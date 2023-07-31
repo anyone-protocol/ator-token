@@ -1,4 +1,5 @@
 require('@nomiclabs/hardhat-ethers')
+require('dotenv')
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
       timeout: 1800000
     },
     goerli: {
-      url: "https://ethereum-goerli.publicnode.com",
+      url: process.env.JSON_RPC,
       accounts: [],
     },
   }

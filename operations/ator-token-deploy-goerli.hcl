@@ -26,6 +26,7 @@ job "ator-token-deploy-goerli" {
             {{with secret "kv/ator-goerli"}}
                 DEPLOYER_PRIVATE_KEY="{{.Data.data.OWNER_KEY}}"
                 CONSUL_TOKEN="{{.Data.data.CONSUL_TOKEN}}"
+                JSON_RPC="{{.Data.data.JSON_RPC}}"
             {{end}}
             EOH
             destination = "secrets/file.env"
