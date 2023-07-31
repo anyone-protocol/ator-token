@@ -4,12 +4,12 @@ import Consul from "consul"
 async function main () {
     const [ owner ] = await ethers.getSigners()
   
-    const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY
-        || 'ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80' // Hardhat key #0
+    const deployerPrivateKey = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY || "nokey")
+        || owner
     
     console.log(`Deploying contract...`)
     
-    const Contract = await ethers.getContractFactory('ATOR', owner)
+    const Contract = await ethers.getContractFactory('ATOR', deployerPrivateKey)
     
     const result = await Contract.deploy()
     await result.deployed()
