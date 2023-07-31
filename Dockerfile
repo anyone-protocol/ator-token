@@ -9,4 +9,6 @@ RUN npm install
 
 RUN npx hardhat compile
 
+RUN chown -R node:node .
+
 USER node
