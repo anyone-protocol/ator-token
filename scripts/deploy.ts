@@ -4,7 +4,8 @@ import Consul from "consul"
 async function main () {
     const [ owner ] = await ethers.getSigners()
   
-    const deployerPrivateKey = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY || "nokey")
+    const deployerPrivateKey = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY || "nokey", 
+      new ethers.providers.JsonRpcProvider('https://ethereum-goerli.publicnode.com'))
         || owner
     
     console.log(`Deploying contract...`)
