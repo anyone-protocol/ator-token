@@ -7,6 +7,6 @@ COPY --chown=node:node . .
 
 RUN npm install
 
-RUN npm run build
+RUN npx hardhat compile
 
 USER node
