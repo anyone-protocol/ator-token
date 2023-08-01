@@ -1,16 +1,21 @@
+import 'dotenv/config'
 import { ethers } from 'hardhat'
 import Consul from "consul"
 
 async function main () {
+    const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY
     const [ owner ] = await ethers.getSigners()
   
-    const deployerPrivateKey = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY || "nokey", 
-      new ethers.providers.JsonRpcProvider(process.env.JSON_RPC))
-        || owner
+    const deployer = deployerPrivateKey
+      ? new ethers.Wallet(
+          deployerPrivateKey,
+          new ethers.providers.JsonRpcProvider(process.env.JSON_RPC)
+        )
+      : owner
     
-    console.log(`Deploying contract...`)
+    console.log(`Deploying contract with deployer ${deployer.address}...`)
     
-    const Contract = await ethers.getContractFactory('ATOR', deployerPrivateKey)
+    const Contract = await ethers.getContractFactory('ATOR', deployer)
     
     const result = await Contract.deploy()
     await result.deployed()
