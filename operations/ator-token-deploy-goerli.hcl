@@ -11,7 +11,7 @@ job "ator-token-deploy-goerli" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.7"
+            image = "ghcr.io/ator-development/ator-token:1.1.8"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "goerli", "scripts/deploy.ts"]
