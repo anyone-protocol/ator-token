@@ -19,7 +19,7 @@ async function main() {
     });
 
     atorContractAddress = (await consul.kv.get<{ Value: string }>({
-      key: process.env.ATOR_TOKEN_KEY || 'dummy-path',
+      key: process.env.CONSUL_KEY || 'dummy-path',
       token: consulToken
     })).Value
   }
