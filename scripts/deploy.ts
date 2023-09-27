@@ -22,7 +22,7 @@ async function main () {
     console.log(`Contract deployed to ${result.address}`)
     
   if (process.env.PHASE !== undefined && process.env.CONSUL_IP !== undefined) {
-    const consulKey = process.env.CONSUL_KEY || 'smart-contracts/stage/test-deploy'
+    const consulKey = process.env.CONSUL_KEY || 'dummy-path'
     const consulToken = process.env.CONSUL_TOKEN || 'no-token'
     console.log(`Connecting to Consul at ${process.env.CONSUL_IP}:${process.env.CONSUL_PORT}...`)
     const consul = new Consul({
