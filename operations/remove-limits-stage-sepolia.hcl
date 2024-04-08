@@ -1,4 +1,4 @@
-job "ator-token-deploy-dev-goerli" {
+job "remove-limits-stage-sepolia" {
     datacenters = ["ator-fin"]
     type = "batch"
 
@@ -6,24 +6,24 @@ job "ator-token-deploy-dev-goerli" {
         attempts = 0
     }
 
-    task "deploy-ator-token-dev-task" {
+    task "remove-limits-stage-task" {
         driver = "docker"
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.8"
+            image = "ghcr.io/ator-development/ator-token:1.1.10"
             entrypoint = ["npx"]
             command = "hardhat"
-            args = ["run", "--network", "goerli", "scripts/deploy.ts"]
+            args = ["run", "--network", "sepolia", "scripts/remove-limits.ts"]
         }
 
         vault {
-            policies = ["ator-token-dev-goerli"]
+            policies = ["ator-token-stage-sepolia"]
         }
 
         template {
             data = <<EOH
-            {{with secret "kv/ator-token/goerli/dev"}}
+            {{with secret "kv/ator-token/sepolia/stage"}}
                 TOKEN_DEPLOYER_KEY="{{.Data.data.TOKEN_DEPLOYER_KEY}}"
                 CONSUL_TOKEN="{{.Data.data.CONSUL_TOKEN}}"
                 JSON_RPC="{{.Data.data.JSON_RPC}}"
@@ -34,10 +34,10 @@ job "ator-token-deploy-dev-goerli" {
         }
 
         env {
-            PHASE="dev"
+            PHASE="stage"
             CONSUL_IP="127.0.0.1"
             CONSUL_PORT="8500"
-            CONSUL_KEY="ator-token/goerli/dev/address"
+            CONSUL_KEY="ator-token/sepolia/stage/address"
         }
 
         restart {

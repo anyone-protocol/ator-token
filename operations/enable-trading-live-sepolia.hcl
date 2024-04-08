@@ -1,4 +1,4 @@
-job "remove-limits-dev-goerli" {
+job "enable-trading-live-sepolia" {
     datacenters = ["ator-fin"]
     type = "batch"
 
@@ -6,24 +6,24 @@ job "remove-limits-dev-goerli" {
         attempts = 0
     }
 
-    task "remove-limits-dev-task" {
+    task "enable-trading-live-task" {
         driver = "docker"
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.10"
+            image = "ghcr.io/ator-development/ator-token:1.1.9"
             entrypoint = ["npx"]
             command = "hardhat"
-            args = ["run", "--network", "goerli", "scripts/remove-limits.ts"]
+            args = ["run", "--network", "sepolia", "scripts/enable-trading.ts"]
         }
 
         vault {
-            policies = ["ator-token-dev-goerli"]
+            policies = ["ator-token-live-sepolia"]
         }
 
         template {
             data = <<EOH
-            {{with secret "kv/ator-token/goerli/dev"}}
+            {{with secret "kv/ator-token/sepolia/live"}}
                 TOKEN_DEPLOYER_KEY="{{.Data.data.TOKEN_DEPLOYER_KEY}}"
                 CONSUL_TOKEN="{{.Data.data.CONSUL_TOKEN}}"
                 JSON_RPC="{{.Data.data.JSON_RPC}}"
@@ -34,10 +34,10 @@ job "remove-limits-dev-goerli" {
         }
 
         env {
-            PHASE="dev"
+            PHASE="live"
             CONSUL_IP="127.0.0.1"
             CONSUL_PORT="8500"
-            CONSUL_KEY="ator-token/goerli/dev/address"
+            CONSUL_KEY="ator-token/sepolia/live/address"
         }
 
         restart {
