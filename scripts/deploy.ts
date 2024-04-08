@@ -3,7 +3,7 @@ import { ethers } from 'hardhat'
 import Consul from "consul"
 
 async function main () {
-    const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY
+    const deployerPrivateKey = process.env.TOKEN_DEPLOYER_KEY
     const [ owner ] = await ethers.getSigners()
   
     const deployer = deployerPrivateKey

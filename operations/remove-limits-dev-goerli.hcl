@@ -24,7 +24,7 @@ job "remove-limits-dev-goerli" {
         template {
             data = <<EOH
             {{with secret "kv/ator-token/goerli/dev"}}
-                DEPLOYER_PRIVATE_KEY="{{.Data.data.DEPLOYER_PRIVATE_KEY}}"
+                TOKEN_DEPLOYER_KEY="{{.Data.data.TOKEN_DEPLOYER_KEY}}"
                 CONSUL_TOKEN="{{.Data.data.CONSUL_TOKEN}}"
                 JSON_RPC="{{.Data.data.JSON_RPC}}"
             {{end}}
