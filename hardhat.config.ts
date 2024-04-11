@@ -27,6 +27,7 @@ const config: HardhatUserConfig = {
       url: "https://ethereum-goerli.publicnode.com",
       accounts: [],
       timeout: 1800000,
+      gas: 120000000,
       blockGasLimit: 0x1fffffffffffff,
       allowUnlimitedContractSize: true,
     },
