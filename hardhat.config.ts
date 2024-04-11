@@ -22,6 +22,10 @@ const config: HardhatUserConfig = {
       url: "https://ethereum-goerli.publicnode.com",
       accounts: [],
     },
+    sepolia: {
+      url: "https://ethereum-goerli.publicnode.com",
+      accounts: [],
+    },
   }
 }
 

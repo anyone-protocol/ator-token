@@ -11,14 +11,14 @@ job "ator-token-deploy-stage-sepolia" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.11"
+            image = "ghcr.io/ator-development/ator-token:1.1.12"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "sepolia", "scripts/deploy.ts"]
         }
 
         vault {
-            policies = ["ator-token-stage-sepolia"]
+            policies = ["ator-token-sepolia-stage"]
         }
 
         template {
