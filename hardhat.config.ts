@@ -13,10 +13,11 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
-      gas: 12000000,
+      gas: 120000000,
       blockGasLimit: 0x1fffffffffffff,
       allowUnlimitedContractSize: true,
-      // timeout: 1800000
+
+      //timeout: 1800000
     },
     goerli: {
       url: "https://ethereum-goerli.publicnode.com",
@@ -25,6 +26,8 @@ const config: HardhatUserConfig = {
     sepolia: {
       url: "https://ethereum-goerli.publicnode.com",
       accounts: [],
+      timeout: 1800000,
+      gasMultiplier: 1.4
     },
   }
 }

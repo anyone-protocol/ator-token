@@ -11,7 +11,7 @@ job "enable-trading-live-sepolia" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.13"
+            image = "ghcr.io/ator-development/ator-token:1.1.14"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "sepolia", "scripts/enable-trading.ts"]
