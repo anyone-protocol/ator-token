@@ -11,7 +11,7 @@ job "remove-limits-stage-sepolia" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.14"
+            image = "ghcr.io/ator-development/ator-token:1.1.15"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "sepolia", "scripts/remove-limits.ts"]
