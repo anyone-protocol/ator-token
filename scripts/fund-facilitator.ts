@@ -48,7 +48,6 @@ async function main() {
   const enableTradingResult = await atorToken.transfer(facilitatorContractAddress, ethers.utils.parseEther(fundValue))
   await enableTradingResult.wait()
   console.log(`Operator ${deployer.address} of ${atorContractAddress} sent ${fundValue} tokens to facilitator contract ${facilitatorContractAddress}`)  
-  console.log(`removeLimits() tx ${enableTradingResult.hash} confirmed!`)
 }
 
 main().catch((error) => {

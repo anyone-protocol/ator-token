@@ -11,7 +11,7 @@ job "fund-facilitator-live-sepolia" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.1.17"
+            image = "ghcr.io/ator-development/ator-token:1.1.18"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "sepolia", "scripts/fund-facilitator.ts"]
@@ -25,6 +25,7 @@ job "fund-facilitator-live-sepolia" {
             data = <<EOH
             {{with secret "kv/ator-token/sepolia/live"}}
                 TOKEN_DEPLOYER_KEY="{{.Data.data.TOKEN_DEPLOYER_KEY}}"
+                CONSUL_TOKEN="{{.Data.data.CONSUL_TOKEN}}"
                 JSON_RPC="{{.Data.data.JSON_RPC}}"
             {{end}}
             EOH
