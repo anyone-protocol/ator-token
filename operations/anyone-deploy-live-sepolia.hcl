@@ -1,4 +1,4 @@
-job "ator-token-deploy-dev-sepolia" {
+job "anyone-deploy-live-sepolia" {
     datacenters = ["ator-fin"]
     type = "batch"
 
@@ -6,7 +6,7 @@ job "ator-token-deploy-dev-sepolia" {
         attempts = 0
     }
 
-    task "deploy-ator-token-dev-task" {
+    task "deploy-anyone-live-task" {
         driver = "docker"
 
         config {
@@ -18,12 +18,12 @@ job "ator-token-deploy-dev-sepolia" {
         }
 
         vault {
-            policies = ["ator-token-sepolia-dev"]
+            policies = ["ator-token-sepolia-live"]
         }
 
         template {
             data = <<EOH
-            {{with secret "kv/ator-token/sepolia/dev"}}
+            {{with secret "kv/ator-token/sepolia/live"}}
                 TOKEN_DEPLOYER_KEY="{{.Data.data.TOKEN_DEPLOYER_KEY}}"
                 CONSUL_TOKEN="{{.Data.data.CONSUL_TOKEN}}"
                 JSON_RPC="{{.Data.data.JSON_RPC}}"
@@ -34,10 +34,10 @@ job "ator-token-deploy-dev-sepolia" {
         }
 
         env {
-            PHASE="dev"
+            PHASE="live"
             CONSUL_IP="127.0.0.1"
             CONSUL_PORT="8500"
-            CONSUL_KEY="ator-token/sepolia/dev/address"
+            CONSUL_KEY="ator-token/sepolia/live/address"
         }
 
         restart {

@@ -7,21 +7,16 @@ const config: HardhatUserConfig = {
     settings: {
       optimizer: {
         enabled: true,
-        runs: 5
+        runs: 200
       },
     },
   },
   networks: {
     hardhat: {
-      gas: 120000000,
-      blockGasLimit: 0x1fffffffffffff,
-      allowUnlimitedContractSize: true,
-
-      //timeout: 1800000
-    },
-    goerli: {
-      url: "https://ethereum-goerli.publicnode.com",
-      accounts: [],
+      // gas: 120000000,
+      // blockGasLimit: 0x1fffffffffffff,
+      // allowUnlimitedContractSize: true,
+      // timeout: 1800000
     },
     sepolia: {
       url: "https://ethereum-goerli.publicnode.com",

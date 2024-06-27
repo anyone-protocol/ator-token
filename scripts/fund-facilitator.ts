@@ -3,7 +3,7 @@ import '@nomiclabs/hardhat-ethers'
 import { ethers } from 'hardhat'
 import Consul from 'consul'
 
-import { abi } from '../artifacts/contracts/ator-token-nodex.sol/ATOR.json'
+import { abi } from '../artifacts/contracts/anyone-token.sol/AnyoneProtocolToken.json'
 
 async function main() {
   const isLocal = (process.env.PHASE === undefined)
@@ -45,8 +45,8 @@ async function main() {
 
   const atorToken = new ethers.Contract(atorContractAddress, abi, deployer)
   const fundValue = process.env.FUND_VALUE || '10'
-  const enableTradingResult = await atorToken.transfer(facilitatorContractAddress, ethers.utils.parseEther(fundValue))
-  await enableTradingResult.wait()
+  const transferResult = await atorToken.transfer(facilitatorContractAddress, ethers.utils.parseEther(fundValue))
+  await transferResult.wait()
   console.log(`Operator ${deployer.address} of ${atorContractAddress} sent ${fundValue} tokens to facilitator contract ${facilitatorContractAddress}`)  
 }
 
