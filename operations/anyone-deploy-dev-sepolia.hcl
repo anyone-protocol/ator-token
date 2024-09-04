@@ -11,7 +11,7 @@ job "anyone-deploy-dev-sepolia" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/ator-development/ator-token:1.2.0"
+            image = "ghcr.io/anyone-protocol/ator-token:1.2.0"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "sepolia", "scripts/deploy.ts"]
