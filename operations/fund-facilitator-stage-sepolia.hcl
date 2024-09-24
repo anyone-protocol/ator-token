@@ -11,7 +11,7 @@ job "fund-facilitator-stage-sepolia" {
 
         config {
             network_mode = "host"
-            image = "ghcr.io/anyone-protocol/ator-token:1.1.18"
+            image = "ghcr.io/anyone-protocol/ator-token:1.2.0"
             entrypoint = ["npx"]
             command = "hardhat"
             args = ["run", "--network", "sepolia", "scripts/fund-facilitator.ts"]
